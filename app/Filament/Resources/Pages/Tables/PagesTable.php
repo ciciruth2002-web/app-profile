@@ -19,43 +19,44 @@ class PagesTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Sampul')
+                    ->label(__('Cover'))
                     ->square(),
                 TextColumn::make('title')
-                    ->label('Judul')
+                    ->label(__('Title'))
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
                 TextColumn::make('slug')
-                    ->label('Slug')
+                    ->label(__('Slug'))
                     ->color('gray'),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->colors([
                         'gray' => 'draft',
                         'success' => 'published',
                     ]),
                 TextColumn::make('sort_order')
-                    ->label('Urutan')
+                    ->label(__('Sort Order'))
                     ->sortable(),
                 IconColumn::make('show_in_menu')
-                    ->label('Masuk Menu')
+                    ->label(__('Included in Menu'))
                     ->boolean(),
                 TextColumn::make('updated_at')
-                    ->label('Diperbarui')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('status')
+                    ->label(__('Status'))
                     ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Diterbitkan',
+                        'draft' => __('Draft'),
+                        'published' => __('Published'),
                     ]),
                 TernaryFilter::make('show_in_menu')
-                    ->label('Di Menu Saja'),
+                    ->label(__('In Menu Only')),
             ])
             ->recordActions([
                 EditAction::make(),

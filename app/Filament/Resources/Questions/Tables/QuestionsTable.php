@@ -16,25 +16,25 @@ class QuestionsTable
         return $table
             ->columns([
                 TextColumn::make('subject')
-                    ->label('Subjek Pertanyaan')
+                    ->label(__('Question Subject'))
                     ->searchable()
                     ->sortable()
                     ->weight('bold')
                     ->limit(40),
                 TextColumn::make('name')
-                    ->label('Nama Penanya')
+                    ->label(__('Questioner Name'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email')
-                    ->label('Email')
+                    ->label(__('Email'))
                     ->searchable()
                     ->color('gray'),
                 TextColumn::make('topic.name')
-                    ->label('Topik')
+                    ->label(__('Topic'))
                     ->badge()
                     ->sortable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->colors([
                         'warning' => 'pending',
@@ -42,19 +42,20 @@ class QuestionsTable
                         'danger' => 'rejected',
                     ]),
                 TextColumn::make('created_at')
-                    ->label('Dikirim Pada')
+                    ->label(__('Sent At'))
                     ->dateTime()
                     ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('status')
+                    ->label(__('Status'))
                     ->options([
-                        'pending' => 'Menunggu Jawaban',
-                        'answered' => 'Sudah Dijawab',
-                        'rejected' => 'Ditolak',
+                        'pending' => __('Waiting for Answer'),
+                        'answered' => __('Answered'),
+                        'rejected' => __('Rejected'),
                     ]),
                 SelectFilter::make('topic_id')
-                    ->label('Topik')
+                    ->label(__('Topic'))
                     ->relationship('topic', 'name'),
             ])
             ->recordActions([

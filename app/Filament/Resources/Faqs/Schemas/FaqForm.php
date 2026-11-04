@@ -16,29 +16,29 @@ class FaqForm
     {
         return $schema
             ->components([
-                Section::make('Informasi FAQ')
+                Section::make(__('FAQ Information'))
                     ->schema([
                         Grid::make(2)->schema([
                             Select::make('topic_id')
-                                ->label('Topik Kategori')
+                                ->label(__('Category Topic'))
                                 ->relationship('topic', 'name')
                                 ->searchable()
                                 ->preload(),
                             TextInput::make('sort_order')
-                                ->label('Urutan Tampil')
+                                ->label(__('Display Order'))
                                 ->numeric()
                                 ->default(0),
                         ]),
                         TextInput::make('question')
-                            ->label('Pertanyaan (FAQ)')
+                            ->label(__('Question (FAQ)'))
                             ->required()
                             ->columnSpanFull(),
                         RichEditor::make('answer')
-                            ->label('Jawaban Lengkap')
+                            ->label(__('Full Answer'))
                             ->required()
                             ->columnSpanFull(),
                         Toggle::make('is_active')
-                            ->label('Aktif Ditampilkan')
+                            ->label(__('Displayed / Active'))
                             ->default(true),
                     ]),
             ]);

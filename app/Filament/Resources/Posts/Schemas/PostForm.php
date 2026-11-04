@@ -23,56 +23,56 @@ class PostForm
         return $schema
             ->components([
                 Grid::make(3)->schema([
-                    Section::make('Konten Artikel')
+                    Section::make(__('Article Content'))
                         ->schema([
                             TextInput::make('title')
-                                ->label('Judul Artikel')
+                                ->label(__('Article Title'))
                                 ->required()
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state ?? ''))),
                             TextInput::make('slug')
-                                ->label('Slug (URL)')
+                                ->label(__('Slug (URL)'))
                                 ->required()
                                 ->unique(ignoreRecord: true),
                             Textarea::make('summary')
-                                ->label('Ringkasan Singkat')
+                                ->label(__('Short Summary'))
                                 ->rows(3)
                                 ->columnSpanFull(),
                             RichEditor::make('content')
-                                ->label('Isi Artikel')
+                                ->label(__('Article Content Body'))
                                 ->columnSpanFull(),
                         ])
                         ->columnSpan(2),
 
-                    Section::make('Publikasi & Media')
+                    Section::make(__('Publication & Media'))
                         ->schema([
                             Hidden::make('user_id')
                                 ->default(fn () => auth()->id()),
                             Select::make('category_id')
-                                ->label('Kategori')
+                                ->label(__('Category'))
                                 ->relationship('category', 'name')
                                 ->searchable()
                                 ->preload()
                                 ->required(),
                             FileUpload::make('image')
-                                ->label('Gambar Utama')
+                                ->label(__('Main Image'))
                                 ->image()
                                 ->directory('posts')
                                 ->visibility('public'),
                             Select::make('status')
-                                ->label('Status')
+                                ->label(__('Status'))
                                 ->options([
-                                    'draft' => 'Draft',
-                                    'published' => 'Diterbitkan',
-                                    'archived' => 'Diarsipkan',
+                                    'draft' => __('Draft'),
+                                    'published' => __('Published'),
+                                    'archived' => __('Archived'),
                                 ])
                                 ->default('draft')
                                 ->required(),
                             DateTimePicker::make('published_at')
-                                ->label('Waktu Publikasi')
+                                ->label(__('Publication Time'))
                                 ->default(now()),
                             Toggle::make('is_featured')
-                                ->label('Artikel Unggulan')
+                                ->label(__('Featured Article'))
                                 ->default(false),
                         ])
                         ->columnSpan(1),

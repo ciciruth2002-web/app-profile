@@ -13,7 +13,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class SlideResource extends Resource
 {
@@ -21,13 +20,27 @@ class SlideResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPresentationChartLine;
 
-    protected static string|UnitEnum|null $navigationGroup = 'CMS';
-
-    protected static ?string $modelLabel = 'Slide Banner';
-
-    protected static ?string $pluralModelLabel = 'Slide Banner';
-
     protected static ?int $navigationSort = 6;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('CMS');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Banner Slide');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Banner Slides');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Banner Slides');
+    }
 
     public static function form(Schema $schema): Schema
     {

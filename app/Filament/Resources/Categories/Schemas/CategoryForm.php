@@ -17,33 +17,33 @@ class CategoryForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Kategori')
+                Section::make(__('Category Information'))
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                                ->label('Nama Kategori')
+                                ->label(__('Category Name'))
                                 ->required()
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state ?? ''))),
                             TextInput::make('slug')
-                                ->label('Slug (URL)')
+                                ->label(__('Slug (URL)'))
                                 ->required()
                                 ->unique(ignoreRecord: true),
                         ]),
                         Textarea::make('description')
-                            ->label('Deskripsi')
+                            ->label(__('Description'))
                             ->rows(3)
                             ->columnSpanFull(),
                         Grid::make(3)->schema([
                             TextInput::make('icon')
-                                ->label('Icon (Heroicon / Nama Class)')
+                                ->label(__('Icon (Heroicon / Class Name)'))
                                 ->placeholder('heroicon-o-folder'),
                             TextInput::make('sort_order')
-                                ->label('Urutan')
+                                ->label(__('Sort Order'))
                                 ->numeric()
                                 ->default(0),
                             Toggle::make('is_active')
-                                ->label('Aktif')
+                                ->label(__('Active'))
                                 ->default(true)
                                 ->inline(false),
                         ]),

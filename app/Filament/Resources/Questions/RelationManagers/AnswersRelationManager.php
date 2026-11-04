@@ -17,12 +17,16 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 class AnswersRelationManager extends RelationManager
 {
     protected static string $relationship = 'answers';
 
-    protected static ?string $title = 'Jawaban Resmi';
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('Official Answers');
+    }
 
     public function form(Schema $schema): Schema
     {
@@ -31,24 +35,24 @@ class AnswersRelationManager extends RelationManager
                 Hidden::make('user_id')
                     ->default(fn () => auth()->id()),
                 Textarea::make('body')
-                    ->label('Isi Tanggapan / Jawaban')
+                    ->label(__('Response / Answer Content'))
                     ->rows(6)
                     ->required()
                     ->columnSpanFull(),
                 Select::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->options([
-                        'draft' => 'Draft (Internal)',
-                        'published' => 'Dipublikasikan',
-                        'rejected' => 'Ditolak',
+                        'draft' => __('Draft (Internal)'),
+                        'published' => __('Published'),
+                        'rejected' => __('Rejected'),
                     ])
                     ->default('published')
                     ->required(),
                 Toggle::make('is_published')
-                    ->label('Tampilkan ke Publik (Bisa dibaca di Aplikasi)')
+                    ->label(__('Published to Public (Readable in App)'))
                     ->default(true),
                 DateTimePicker::make('answered_at')
-                    ->label('Waktu Menjawab')
+                    ->label(__('Answer Time'))
                     ->default(now()),
             ]);
     }
@@ -59,14 +63,14 @@ class AnswersRelationManager extends RelationManager
             ->recordTitleAttribute('body')
             ->columns([
                 TextColumn::make('user.name')
-                    ->label('Petugas / Penjawab')
+                    ->label(__('Officer / Responder'))
                     ->weight('bold'),
                 TextColumn::make('body')
-                    ->label('Jawaban')
+                    ->label(__('Answer'))
                     ->limit(60)
                     ->searchable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->colors([
                         'gray' => 'draft',
@@ -74,10 +78,10 @@ class AnswersRelationManager extends RelationManager
                         'danger' => 'rejected',
                     ]),
                 IconColumn::make('is_published')
-                    ->label('Publik')
+                    ->label(__('Public'))
                     ->boolean(),
                 TextColumn::make('answered_at')
-                    ->label('Waktu Jawab')
+                    ->label(__('Answered At'))
                     ->dateTime()
                     ->sortable(),
             ])
@@ -86,7 +90,7 @@ class AnswersRelationManager extends RelationManager
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->label('Tulis Jawaban')
+                    ->label(__('Write Answer'))
                     ->after(function ($record) {
                         if ($record->is_published) {
                             $record->question->update(['status' => 'answered']);

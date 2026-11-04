@@ -17,22 +17,22 @@ class SlideForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Slide Banner')
+                Section::make(__('Banner Slide Information'))
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('title')
-                                ->label('Judul Banner')
+                                ->label(__('Banner Title'))
                                 ->required(),
                             TextInput::make('link_url')
-                                ->label('Tautan Target (Opsional)')
+                                ->label(__('Target Link (Optional)'))
                                 ->url(),
                         ]),
                         Textarea::make('description')
-                            ->label('Deskripsi Singkat')
+                            ->label(__('Short Description'))
                             ->rows(3)
                             ->columnSpanFull(),
                         FileUpload::make('image')
-                            ->label('Gambar Banner')
+                            ->label(__('Banner Image'))
                             ->image()
                             ->directory('slides')
                             ->visibility('public')
@@ -40,15 +40,15 @@ class SlideForm
                             ->columnSpanFull(),
                         Grid::make(4)->schema([
                             DatePicker::make('start_date')
-                                ->label('Mulai Tayang'),
+                                ->label(__('Broadcast Start')),
                             DatePicker::make('end_date')
-                                ->label('Selesai Tayang'),
+                                ->label(__('Broadcast End')),
                             TextInput::make('sort_order')
-                                ->label('Urutan')
+                                ->label(__('Sort Order'))
                                 ->numeric()
                                 ->default(0),
                             Toggle::make('is_active')
-                                ->label('Aktif')
+                                ->label(__('Active'))
                                 ->default(true)
                                 ->inline(false),
                         ]),

@@ -15,34 +15,34 @@ class UserForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Pengguna')
+                Section::make(__('User Information'))
                     ->schema([
                         Grid::make(2)->schema([
                             TextInput::make('name')
-                                ->label('Nama Lengkap')
+                                ->label(__('Full Name'))
                                 ->required(),
                             TextInput::make('email')
-                                ->label('Email')
+                                ->label(__('Email'))
                                 ->email()
                                 ->required()
                                 ->unique(ignoreRecord: true),
                             TextInput::make('password')
-                                ->label('Kata Sandi')
+                                ->label(__('Password'))
                                 ->password()
                                 ->dehydrated(fn ($state) => filled($state))
                                 ->required(fn (string $operation): bool => $operation === 'create'),
                             Select::make('role')
-                                ->label('Peran (Role)')
+                                ->label(__('Role (User Role)'))
                                 ->options([
-                                    'admin' => 'Administrator',
-                                    'editor' => 'Editor (Pengelola Konten)',
-                                    'viewer' => 'Viewer (Hanya Baca)',
+                                    'admin' => __('Administrator'),
+                                    'editor' => __('Editor (Content Manager)'),
+                                    'viewer' => __('Viewer (Read Only)'),
                                 ])
                                 ->default('admin')
                                 ->required(),
                         ]),
                         FileUpload::make('avatar')
-                            ->label('Foto Profil (Avatar)')
+                            ->label(__('Profile Photo (Avatar)'))
                             ->image()
                             ->directory('avatars')
                             ->visibility('public')

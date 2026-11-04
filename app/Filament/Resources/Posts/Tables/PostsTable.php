@@ -19,21 +19,21 @@ class PostsTable
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Foto')
+                    ->label(__('Photo'))
                     ->square(),
                 TextColumn::make('title')
-                    ->label('Judul')
+                    ->label(__('Title'))
                     ->searchable()
                     ->sortable()
                     ->limit(45)
                     ->weight('bold'),
                 TextColumn::make('category.name')
-                    ->label('Kategori')
+                    ->label(__('Category'))
                     ->badge()
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('Status'))
                     ->badge()
                     ->colors([
                         'gray' => 'draft',
@@ -41,29 +41,30 @@ class PostsTable
                         'warning' => 'archived',
                     ]),
                 IconColumn::make('is_featured')
-                    ->label('Unggulan')
+                    ->label(__('Featured'))
                     ->boolean(),
                 TextColumn::make('view_count')
-                    ->label('Dilihat')
+                    ->label(__('Views'))
                     ->sortable()
                     ->numeric(),
                 TextColumn::make('published_at')
-                    ->label('Diterbitkan')
+                    ->label(__('Published'))
                     ->dateTime()
                     ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('status')
+                    ->label(__('Status'))
                     ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Diterbitkan',
-                        'archived' => 'Diarsipkan',
+                        'draft' => __('Draft'),
+                        'published' => __('Published'),
+                        'archived' => __('Archived'),
                     ]),
                 SelectFilter::make('category_id')
-                    ->label('Kategori')
+                    ->label(__('Category'))
                     ->relationship('category', 'name'),
                 TernaryFilter::make('is_featured')
-                    ->label('Hanya Unggulan'),
+                    ->label(__('Featured Only')),
             ])
             ->recordActions([
                 EditAction::make(),

@@ -16,22 +16,22 @@ class MediaTable
         return $table
             ->columns([
                 ImageColumn::make('file_path')
-                    ->label('Pratinjau')
+                    ->label(__('Preview'))
                     ->square(),
                 TextColumn::make('file_name')
-                    ->label('Nama Berkas')
+                    ->label(__('File Name'))
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
                 TextColumn::make('alt_text')
-                    ->label('Alt Text')
+                    ->label(__('Alt Text'))
                     ->searchable(),
                 TextColumn::make('user.name')
-                    ->label('Pengunggah')
+                    ->label(__('Uploader'))
                     ->badge()
                     ->color('gray'),
                 TextColumn::make('created_at')
-                    ->label('Diupload')
+                    ->label(__('Uploaded At'))
                     ->dateTime()
                     ->sortable(),
             ])

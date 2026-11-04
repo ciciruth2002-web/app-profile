@@ -16,53 +16,53 @@ class MenuForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Menu')
+                Section::make(__('Menu Information'))
                     ->schema([
                         Grid::make(3)->schema([
                             TextInput::make('name')
-                                ->label('Nama Menu')
+                                ->label(__('Menu Name'))
                                 ->required(),
                             Select::make('location')
-                                ->label('Lokasi Menu')
+                                ->label(__('Menu Location'))
                                 ->options([
-                                    'header' => 'Header (Atas)',
-                                    'footer' => 'Footer (Bawah)',
-                                    'sidebar' => 'Sidebar (Samping)',
+                                    'header' => __('Header (Top)'),
+                                    'footer' => __('Footer (Bottom)'),
+                                    'sidebar' => __('Sidebar (Side)'),
                                 ])
                                 ->default('header')
                                 ->required(),
                             Toggle::make('is_active')
-                                ->label('Aktif')
+                                ->label(__('Active'))
                                 ->default(true)
                                 ->inline(false),
                         ]),
                     ]),
 
-                Section::make('Daftar Tautan Menu')
+                Section::make(__('Menu Links List'))
                     ->schema([
                         Repeater::make('items')
-                            ->label('Item Menu')
+                            ->label(__('Menu Items'))
                             ->relationship('items')
                             ->orderColumn('sort_order')
                             ->schema([
                                 Grid::make(4)->schema([
                                     TextInput::make('label')
-                                        ->label('Label')
+                                        ->label(__('Label'))
                                         ->required(),
                                     TextInput::make('url')
-                                        ->label('URL / Tautan')
+                                        ->label(__('URL / Link'))
                                         ->required(),
                                     Select::make('type')
-                                        ->label('Tipe')
+                                        ->label(__('Type'))
                                         ->options([
-                                            'custom' => 'Kustom (URL)',
-                                            'page' => 'Halaman Statis',
-                                            'post' => 'Artikel',
-                                            'category' => 'Kategori',
+                                            'custom' => __('Custom (URL)'),
+                                            'page' => __('Static Page'),
+                                            'post' => __('Article'),
+                                            'category' => __('Category'),
                                         ])
                                         ->default('custom'),
                                     Toggle::make('is_active')
-                                        ->label('Aktif')
+                                        ->label(__('Active'))
                                         ->default(true)
                                         ->inline(false),
                                 ]),

@@ -21,46 +21,46 @@ class PageForm
         return $schema
             ->components([
                 Grid::make(3)->schema([
-                    Section::make('Konten Halaman')
+                    Section::make(__('Page Content'))
                         ->schema([
                             TextInput::make('title')
-                                ->label('Judul Halaman')
+                                ->label(__('Page Title'))
                                 ->required()
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state ?? ''))),
                             TextInput::make('slug')
-                                ->label('Slug (URL)')
+                                ->label(__('Slug (URL)'))
                                 ->required()
                                 ->unique(ignoreRecord: true),
                             RichEditor::make('content')
-                                ->label('Isi Halaman')
+                                ->label(__('Page Content Body'))
                                 ->columnSpanFull(),
                         ])
                         ->columnSpan(2),
 
-                    Section::make('Pengaturan & Media')
+                    Section::make(__('Settings & Media'))
                         ->schema([
                             Hidden::make('user_id')
                                 ->default(fn () => auth()->id()),
                             FileUpload::make('image')
-                                ->label('Gambar Sampul')
+                                ->label(__('Cover Image'))
                                 ->image()
                                 ->directory('pages')
                                 ->visibility('public'),
                             Select::make('status')
-                                ->label('Status')
+                                ->label(__('Status'))
                                 ->options([
-                                    'draft' => 'Draft',
-                                    'published' => 'Diterbitkan',
+                                    'draft' => __('Draft'),
+                                    'published' => __('Published'),
                                 ])
                                 ->default('draft')
                                 ->required(),
                             TextInput::make('sort_order')
-                                ->label('Urutan')
+                                ->label(__('Sort Order'))
                                 ->numeric()
                                 ->default(0),
                             Toggle::make('show_in_menu')
-                                ->label('Tampilkan di Menu')
+                                ->label(__('Show in Menu'))
                                 ->default(false),
                         ])
                         ->columnSpan(1),

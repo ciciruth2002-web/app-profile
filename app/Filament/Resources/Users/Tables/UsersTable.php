@@ -17,19 +17,19 @@ class UsersTable
         return $table
             ->columns([
                 ImageColumn::make('avatar')
-                    ->label('Foto')
+                    ->label(__('Photo'))
                     ->circular(),
                 TextColumn::make('name')
-                    ->label('Nama Pengguna')
+                    ->label(__('Username'))
                     ->searchable()
                     ->sortable()
                     ->weight('bold'),
                 TextColumn::make('email')
-                    ->label('Email')
+                    ->label(__('Email'))
                     ->searchable()
                     ->color('gray'),
                 TextColumn::make('role')
-                    ->label('Peran')
+                    ->label(__('Role'))
                     ->badge()
                     ->colors([
                         'danger' => 'admin',
@@ -37,16 +37,17 @@ class UsersTable
                         'gray' => 'viewer',
                     ]),
                 TextColumn::make('created_at')
-                    ->label('Terdaftar')
+                    ->label(__('Registered'))
                     ->dateTime()
                     ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('role')
+                    ->label(__('Role'))
                     ->options([
-                        'admin' => 'Administrator',
-                        'editor' => 'Editor',
-                        'viewer' => 'Viewer',
+                        'admin' => __('Administrator'),
+                        'editor' => __('Editor'),
+                        'viewer' => __('Viewer'),
                     ]),
             ])
             ->recordActions([

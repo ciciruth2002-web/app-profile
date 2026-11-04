@@ -15,31 +15,31 @@ class SettingForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Pengaturan')
+                Section::make(__('Settings Information'))
                     ->schema([
                         Grid::make(3)->schema([
                             TextInput::make('group')
-                                ->label('Grup')
+                                ->label(__('Group'))
                                 ->default('general')
                                 ->required(),
                             TextInput::make('key')
-                                ->label('Kunci (Key)')
+                                ->label(__('Key (Setting Key)'))
                                 ->required()
                                 ->unique(ignoreRecord: true),
                             Select::make('type')
-                                ->label('Tipe Data')
+                                ->label(__('Data Type'))
                                 ->options([
-                                    'text' => 'Teks Singkat',
-                                    'textarea' => 'Teks Panjang',
-                                    'image' => 'URL / Path Gambar',
-                                    'boolean' => 'Boolean (1/0)',
-                                    'json' => 'JSON',
+                                    'text' => __('Short Text'),
+                                    'textarea' => __('Long Text'),
+                                    'image' => __('Image URL / Path'),
+                                    'boolean' => __('Boolean (1/0)'),
+                                    'json' => __('JSON'),
                                 ])
                                 ->default('text')
                                 ->required(),
                         ]),
                         Textarea::make('value')
-                            ->label('Nilai (Value)')
+                            ->label(__('Value'))
                             ->rows(4)
                             ->columnSpanFull(),
                     ]),

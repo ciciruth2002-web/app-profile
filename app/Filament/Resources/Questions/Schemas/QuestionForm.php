@@ -16,47 +16,47 @@ class QuestionForm
         return $schema
             ->components([
                 Grid::make(3)->schema([
-                    Section::make('Rincian Pertanyaan')
+                    Section::make(__('Question Details'))
                         ->schema([
                             TextInput::make('subject')
-                                ->label('Subjek Pertanyaan')
+                                ->label(__('Question Subject'))
                                 ->required()
                                 ->columnSpanFull(),
                             Textarea::make('body')
-                                ->label('Isi Pertanyaan Lengkap')
+                                ->label(__('Full Question Content'))
                                 ->rows(6)
                                 ->required()
                                 ->columnSpanFull(),
                         ])
                         ->columnSpan(2),
 
-                    Section::make('Informasi Penanya & Status')
+                    Section::make(__('Questioner Information & Status'))
                         ->schema([
                             Select::make('topic_id')
-                                ->label('Topik')
+                                ->label(__('Topic'))
                                 ->relationship('topic', 'name')
                                 ->searchable()
                                 ->preload(),
                             TextInput::make('name')
-                                ->label('Nama Lengkap')
+                                ->label(__('Full Name'))
                                 ->required(),
                             TextInput::make('email')
-                                ->label('Alamat Email')
+                                ->label(__('Email Address'))
                                 ->email()
                                 ->required(),
                             TextInput::make('phone')
-                                ->label('No. Telepon / WhatsApp'),
+                                ->label(__('Phone Number / WhatsApp')),
                             Select::make('status')
-                                ->label('Status Pertanyaan')
+                                ->label(__('Question Status'))
                                 ->options([
-                                    'pending' => 'Menunggu Jawaban',
-                                    'answered' => 'Sudah Dijawab',
-                                    'rejected' => 'Ditolak',
+                                    'pending' => __('Waiting for Answer'),
+                                    'answered' => __('Answered'),
+                                    'rejected' => __('Rejected'),
                                 ])
                                 ->default('pending')
                                 ->required(),
                             TextInput::make('ip_address')
-                                ->label('Alamat IP')
+                                ->label(__('IP Address'))
                                 ->disabled(),
                         ])
                         ->columnSpan(1),

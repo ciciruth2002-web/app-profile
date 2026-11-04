@@ -16,23 +16,23 @@ class StatsOverviewWidget extends BaseWidget
         $pendingQuestions = Question::pending()->count();
 
         return [
-            Stat::make('Total Artikel', Post::count())
-                ->description(Post::published()->count().' artikel terpublikasi')
+            Stat::make(__('Total Articles'), Post::count())
+                ->description(__(':count articles published', ['count' => Post::published()->count()]))
                 ->descriptionIcon('heroicon-m-document-text')
                 ->color('primary'),
 
-            Stat::make('Pertanyaan Menunggu', $pendingQuestions)
-                ->description($pendingQuestions > 0 ? 'Perlu tanggapan segera' : 'Semua pertanyaan terjawab')
+            Stat::make(__('Pending Questions'), $pendingQuestions)
+                ->description($pendingQuestions > 0 ? __('Needs immediate response') : __('All questions answered'))
                 ->descriptionIcon('heroicon-m-chat-bubble-left-right')
                 ->color($pendingQuestions > 0 ? 'danger' : 'success'),
 
-            Stat::make('Halaman Statis', Page::count())
-                ->description(Page::published()->count().' halaman aktif')
+            Stat::make(__('Static Pages'), Page::count())
+                ->description(__(':count pages active', ['count' => Page::published()->count()]))
                 ->descriptionIcon('heroicon-m-document-duplicate')
                 ->color('info'),
 
-            Stat::make('Total FAQ', Faq::active()->count())
-                ->description('Tanya-jawab publik')
+            Stat::make(__('Total FAQs'), Faq::active()->count())
+                ->description(__('Public Q&A'))
                 ->descriptionIcon('heroicon-m-question-mark-circle')
                 ->color('success'),
         ];
