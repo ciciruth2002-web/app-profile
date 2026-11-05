@@ -34,8 +34,8 @@ class DatabaseSeeder extends Seeder
         $admin = User::firstOrCreate(
             ['email' => 'admin@admin.com'],
             [
-                'name' => 'Administrator',
-                'password' => Hash::make('password'),
+                'name' => 'gebi@gebi.com',
+                'password' => Hash::make('rahasia'),
                 'role' => 'admin',
             ]
         );
@@ -153,8 +153,9 @@ class DatabaseSeeder extends Seeder
 
         // 6. Slides
         Slide::updateOrCreate(
-            ['title' => 'Selamat Datang di Portal Profil Instansi'],
+            ['sort_order' => 1],
             [
+                'title' => 'Selamat Datang di Portal Profil Instansi',
                 'description' => 'Akses informasi resmi, berita terkini, dan layanan tanya jawab masyarakat dalam satu genggaman.',
                 'image' => 'slides/default-banner-1.jpg',
                 'link_url' => '/posts',
@@ -164,8 +165,9 @@ class DatabaseSeeder extends Seeder
         );
 
         Slide::updateOrCreate(
-            ['title' => 'Kanal Pertanyaan dan Aspirasi Warga'],
+            ['sort_order' => 2],
             [
+                'title' => 'Kanal Pertanyaan dan Aspirasi Warga',
                 'description' => 'Sampaikan pertanyaan dan permohonan informasi Anda secara mudah dan transparan.',
                 'image' => 'slides/default-banner-2.jpg',
                 'link_url' => '/questions',
@@ -214,7 +216,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($faqsData as $faq) {
             Faq::updateOrCreate(
-                ['question' => $faq['question']],
+                ['topic_id' => $faq['topic_id'], 'sort_order' => $faq['sort_order']],
                 array_merge($faq, ['is_active' => true])
             );
         }
@@ -271,7 +273,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($menuItems as $item) {
             MenuItem::updateOrCreate(
-                ['menu_id' => $headerMenu->id, 'label' => $item['label']],
+                ['menu_id' => $headerMenu->id, 'sort_order' => $item['sort_order']],
                 array_merge($item, ['menu_id' => $headerMenu->id, 'is_active' => true])
             );
         }

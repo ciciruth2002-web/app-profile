@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->longText('body');
+            $table->json('body');
             $table->enum('status', ['draft', 'published', 'rejected'])->default('draft');
             $table->boolean('is_published')->default(false);
             $table->timestamp('answered_at')->nullable();

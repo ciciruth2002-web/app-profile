@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Spatie\Translatable\HasTranslations;
 
 #[Fillable([
     'menu_id',
@@ -25,6 +26,9 @@ class MenuItem extends Model
 {
     /** @use HasFactory<MenuItemFactory> */
     use HasFactory;
+    use HasTranslations;
+
+    public array $translatable = ['label'];
 
     protected function casts(): array
     {
