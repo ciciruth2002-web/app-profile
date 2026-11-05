@@ -22,6 +22,7 @@ class QuestionAnswer extends Model
 {
     /** @use HasFactory<QuestionAnswerFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['body'];

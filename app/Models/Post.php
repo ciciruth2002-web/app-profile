@@ -27,6 +27,7 @@ class Post extends Model
 {
     /** @use HasFactory<PostFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['title', 'summary', 'content'];

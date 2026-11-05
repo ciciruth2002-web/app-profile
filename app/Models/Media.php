@@ -24,6 +24,7 @@ class Media extends Model
 {
     /** @use HasFactory<MediaFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['alt_text'];

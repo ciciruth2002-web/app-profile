@@ -23,6 +23,7 @@ class Slide extends Model
 {
     /** @use HasFactory<SlideFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['title', 'description'];

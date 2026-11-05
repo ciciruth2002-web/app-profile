@@ -14,6 +14,7 @@ class Category extends Model
 {
     /** @use HasFactory<CategoryFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['name', 'description'];

@@ -21,6 +21,7 @@ class Faq extends Model
 {
     /** @use HasFactory<FaqFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['question', 'answer'];

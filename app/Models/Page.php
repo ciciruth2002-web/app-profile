@@ -24,6 +24,7 @@ class Page extends Model
 {
     /** @use HasFactory<PageFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['title', 'content'];

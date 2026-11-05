@@ -26,6 +26,7 @@ class MenuItem extends Model
 {
     /** @use HasFactory<MenuItemFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['label'];

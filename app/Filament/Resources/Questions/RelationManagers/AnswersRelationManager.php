@@ -18,9 +18,12 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use LaraZeus\SpatieTranslatable\Resources\RelationManagers\Concerns\Translatable;
 
 class AnswersRelationManager extends RelationManager
 {
+    use Translatable;
+
     protected static string $relationship = 'answers';
 
     public static function getTitle(Model $ownerRecord, string $pageClass): string

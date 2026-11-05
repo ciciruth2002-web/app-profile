@@ -14,6 +14,7 @@ class QuestionTopic extends Model
 {
     /** @use HasFactory<QuestionTopicFactory> */
     use HasFactory;
+
     use HasTranslations;
 
     public array $translatable = ['name', 'description'];
